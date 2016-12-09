@@ -27,15 +27,14 @@ public class UserMealsUtil {
         final List<UserMealWithExceed> lstUserMeal = getFilteredWithExceeded(mealList, LocalTime.of(7, 0), LocalTime.of(12, 0), 2000);
 
         lstUserMeal.forEach(System.out::println);
- //       for (UserMealWithExceed userMeal : lstUserMeal
+        //       for (UserMealWithExceed userMeal : lstUserMeal
 //                )
- //           System.out.println(userMeal.getDescription());
+        //           System.out.println(userMeal.getDescription());
 
     }
 
     public static List<UserMealWithExceed> getFilteredWithExceeded(List<UserMeal> mealList, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
-        // TODO return filtered list with correctly exceeded field __
-        final List<UserMealWithExceed> userMealWithExceedList = new ArrayList<>();
+       final List<UserMealWithExceed> userMealWithExceedList = new ArrayList<>();
 //        for (UserMeal userMeal : mealList
 //                ) {
 //            final LocalTime dateTime = LocalTime.of(userMeal.getDateTime().getHour(),
@@ -47,9 +46,16 @@ public class UserMealsUtil {
 
 
 //        }
-        Map<LocalTime, List<UserMeal>> localTimeListMap =
-                mealList.stream().collect(Collectors.groupingBy(p -> p.getDateTime().toLocalTime()));
+       // Map<LocalTime, Integer> localTimeIntegerMap =
+        Map<LocalDate, Integer> localTimeIntegerMap = mealList.stream()
+                .collect(Collectors.groupingBy(p -> p.getDateTime().toLocalDate(), Collectors.summingInt(p -> p.getCalories())));
+      // localTimeIntegerMap.forEach((p1,p2)-> System.out.println(p1.toString()));
+        return mealList.stream().filter(p -> TimeUtil.isBetween(p.getDateTime().toLocalTime(), startTime, endTime))
+                .map(p -> new UserMealWithExceed(p.getDateTime(), p.getDescription(), p.getCalories(),
+                        localTimeIntegerMap.get(p.getDateTime().toLocalDate()) > caloriesPerDay))
+                .collect(Collectors.toList());
+        // .forEach(p-> System.out.println(p));
 
-        return null;
+
     }
 }
