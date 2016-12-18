@@ -21,8 +21,9 @@
 <h2><a href="index.html">Home</a></h2>
 <h2>User list</h2>
 <table border=1>
-    <c:forEach var="num" items="<%=list%>">
+    <c:forEach var="num" items="${eee}">
         <tr>
+            <jsp:useBean id="num" scope="page" type=""
             <td>${num.getDescription()}</td>
             <td>${num.getDateTime()}</td>
             <td>${num.getCalories()}</td>
