@@ -22,8 +22,8 @@
 <h2>User list</h2>
 <table border=1>
     <c:forEach items="${eee}" var="num" >
-        <jsp:useBean id="num" scope="page" type="ru.javawebinar.topjava.model.MealWithExceed"></jsp:useBean>
-        <tr>
+        <jsp:useBean id="num" scope="page" type="ru.javawebinar.topjava.model.MealWithExceed"/>
+        <tr class = ${num.exceed ? }>
             <td>${num.getDescription()}</td>
             <td>${num.getDateTime()}</td>
             <td>${num.getCalories()}</td>
