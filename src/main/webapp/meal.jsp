@@ -5,6 +5,15 @@
 <html>
 <head>
     <title>User list</title>
+    <style>
+        .normal {
+            collor: green;
+        }
+
+        .exceeded {
+            collor: red;
+        }
+    </style>
 </head>
 <body>
 <% List<MealWithExceed> list = (List<MealWithExceed>) request.getAttribute("eee");
@@ -12,14 +21,14 @@
 <h2><a href="index.html">Home</a></h2>
 <h2>User list</h2>
 <table border=1>
-<c:forEach var="num" items="<%=list%>">
-    <tr>
-        <td>${num.getDescription()}</td>
-        <td>${num.getDateTime()}</td>
-        <td>${num.getCalories()}</td>
-        <td>${num.getCalories()}</td>
-    </tr>
-</c:forEach>
+    <c:forEach var="num" items="<%=list%>">
+        <tr>
+            <td>${num.getDescription()}</td>
+            <td>${num.getDateTime()}</td>
+            <td>${num.getCalories()}</td>
+            <td>${num.getCalories()}</td>
+        </tr>
+    </c:forEach>
 </table>
 <h1>"<%=list.get(0).getCalories()%>"</h1>
 </body>
