@@ -1,5 +1,3 @@
-<%@ page import="ru.javawebinar.topjava.model.MealWithExceed" %>
-<%@ page import="java.util.List" %>
 <%@ page import="ru.javawebinar.topjava.util.DateTimeUtil" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -23,7 +21,7 @@
 <table border=1>
     <c:forEach items="${eee}" var="num" >
         <jsp:useBean id="num" scope="page" type="ru.javawebinar.topjava.model.MealWithExceed"/>
-        <tr class = "exceeded">
+        <tr class = "${num.exceed ? 'exceeded' : 'normal'}">
             <td>${num.description}</td>
             <td><%=DateTimeUtil.toString(num.getDateTime())%></td>
             <td>${num.calories}</td>
