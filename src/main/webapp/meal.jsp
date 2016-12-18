@@ -21,7 +21,7 @@
 <table border=1>
     <c:forEach items="${eee}" var="num" >
         <jsp:useBean id="num" scope="page" type="ru.javawebinar.topjava.model.MealWithExceed"/>
-        <tr class = "${num.exceed ? 'normal' :'exceeded'}">
+        <tr class = "${num.exceed} ? 'exceeded' :'normal'">
             <td>${num.description}</td>
             <td>${num.dateTime}</td>
             <td>${num.calories}</td>
