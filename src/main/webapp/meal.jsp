@@ -21,13 +21,14 @@
 <table border=1>
     <c:forEach items="${eee}" var="num" >
         <jsp:useBean id="num" scope="page" type="ru.javawebinar.topjava.model.MealWithExceed"/>
-        <tr class = ${num.exceed ? 'normal' :'exceeded'}>
-            <td>${num.description)}</td>
+        <tr class = "${num.exceed ? 'normal' :'exceeded'}">
+            <td>${num.description}</td>
             <td>${num.dateTime}</td>
             <td>${num.calories}</td>
+            <td>${num.exceed}</td>
         </tr>
     </c:forEach>
 </table>
-<h1>"<%=list.get(0).getCalories()%>"</h1>
+<h1>"${num.calories}"</h1>
 </body>
 </html>
