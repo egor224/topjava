@@ -16,18 +16,15 @@
     </style>
 </head>
 <body>
-<% List<MealWithExceed> list = (List<MealWithExceed>) request.getAttribute("eee");
-%>
 <h2><a href="index.html">Home</a></h2>
 <h2>User list</h2>
 <table border=1>
     <c:forEach items="${eee}" var="num" >
         <jsp:useBean id="num" scope="page" type="ru.javawebinar.topjava.model.MealWithExceed"/>
-        <tr class = ${num.exceed ? }>
-            <td>${num.getDescription()}</td>
-            <td>${num.getDateTime()}</td>
-            <td>${num.getCalories()}</td>
-            <td>${num.getCalories()}</td>
+        <tr class = ${num.exceed ? 'normal' :'exceeded'}>
+            <td>${num.description)}</td>
+            <td>${num.dateTime}</td>
+            <td>${num.calories}</td>
         </tr>
     </c:forEach>
 </table>
