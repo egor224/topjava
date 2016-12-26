@@ -4,6 +4,8 @@ import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.UserRepository;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static ru.javawebinar.topjava.util.ValidationUtil.checkNotFound;
@@ -17,6 +19,10 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository repository;
 
+    public void setRepository(UserRepository repository) {
+        this.repository = repository;
+    }
+
     @Override
     public User save(User user) {
         return repository.save(user);
@@ -24,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(int id) {
-        checkNotFoundWithId(repository.delete(id), id);
+        repository.delete(id);// checkNotFoundWithId(, id);
     }
 
     @Override
@@ -38,8 +44,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAll() {
-        return repository.getAll();
+    public Collection<User> getAll() {
+        return Collections.EMPTY_LIST;
     }
 
     @Override
