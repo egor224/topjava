@@ -12,6 +12,8 @@ import java.util.Set;
  */
 public class User extends NamedEntity {
 
+    private Integer id;
+
     private String email;
 
     private String password;
@@ -25,6 +27,16 @@ public class User extends NamedEntity {
     private int caloriesPerDay = MealsUtil.DEFAULT_CALORIES_PER_DAY;
 
     public User() {
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public User(Integer id, String name, String email, String password, Role role, Role... roles) {
@@ -82,6 +94,10 @@ public class User extends NamedEntity {
 
     public String getPassword() {
         return password;
+    }
+
+    public boolean isNew() {
+        return id == null;
     }
 
     @Override
