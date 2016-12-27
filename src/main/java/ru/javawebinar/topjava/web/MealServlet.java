@@ -26,6 +26,12 @@ public class MealServlet extends HttpServlet {
 
     private MealRepository repository;
 
+    private HttpServletRequest request;
+
+    public void setRequest(HttpServletRequest request) {
+        this.request = request;
+    }
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -35,16 +41,21 @@ public class MealServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String id = request.getParameter("id");
+        setRequest(request);
+        String id = getStrParam("id");
 
         Meal meal = new Meal(id.isEmpty() ? null : Integer.valueOf(id),
-                LocalDateTime.parse(request.getParameter("dateTime")),
+                LocalDateTime.parse(getStrParam("dateTime")),
                 request.getParameter("description"),
-                Integer.valueOf(request.getParameter("calories")));
+                Integer.valueOf(getStrParam("calories")));
 
         LOG.info(meal.isNew() ? "Create {}" : "Update {}", meal);
         repository.save(meal);
         response.sendRedirect("meals");
+    }
+
+    public String getStrParam(String name){
+      return  request.getParameter(name);
     }
 
     @Override
