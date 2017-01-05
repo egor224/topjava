@@ -55,11 +55,7 @@ public class User extends NamedEntity {
     @Digits(fraction = 0, integer = 4)
     private int caloriesPerDay = MealsUtil.DEFAULT_CALORIES_PER_DAY;
 
-    public User() {
-    }
-
-    public User(User u) {
-        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.getCaloriesPerDay(), u.isEnabled(), u.getRoles());
+    public User(User user) {
     }
 
     public User(Integer id, String name, String email, String password, Role role, Role... roles) {
@@ -73,6 +69,9 @@ public class User extends NamedEntity {
         this.caloriesPerDay = caloriesPerDay;
         this.enabled = enabled;
         this.roles = roles;
+    }
+
+    public User() {
     }
 
     public String getEmail() {
